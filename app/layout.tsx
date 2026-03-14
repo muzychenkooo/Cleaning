@@ -5,7 +5,7 @@ import { Header } from '@/components/layout/header';
 import { Footer } from '@/components/layout/footer';
 import { StickyCta } from '@/components/layout/sticky-cta';
 import { CookieBanner } from '@/components/layout/cookie-banner';
-import { site } from '@/data/site';
+import { site, baseUrl } from '@/data/site';
 import { LocalBusinessJsonLd } from './json-ld';
 import { OverflowDebug } from '@/components/layout/overflow-debug';
 import { ScrollLockX } from '@/components/layout/scroll-lock-x';
@@ -15,8 +15,6 @@ const montserrat = Montserrat({
   display: 'swap',
   variable: '--font-sans',
 });
-
-const baseUrl = 'https://bigyborka.ru';
 
 export const metadata: Metadata = {
   metadataBase: new URL(baseUrl),

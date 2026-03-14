@@ -5,9 +5,7 @@ import { Container } from '@/components/layout/container';
 import { Button } from '@/components/ui/button';
 import { ServiceJsonLd } from '@/app/json-ld';
 import { getServiceBySlug, services } from '@/data/services';
-import { site } from '@/data/site';
-
-const baseUrl = 'https://bigyborka.ru';
+import { site, baseUrl } from '@/data/site';
 
 type Props = { params: Promise<{ slug: string }> };
 

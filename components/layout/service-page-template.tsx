@@ -15,7 +15,7 @@ import {
 } from '@/components/service';
 import { ServiceJsonLd, FaqJsonLd } from '@/app/json-ld';
 
-const baseUrl = 'https://bigyborka.ru';
+import { baseUrl } from '@/data/site';
 
 /** Full detailed service page: pass content + breadcrumbs. */
 type FullProps = {

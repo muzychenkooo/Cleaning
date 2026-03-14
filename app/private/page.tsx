@@ -4,10 +4,8 @@ import { Breadcrumbs } from '@/components/layout/breadcrumbs';
 import { Container } from '@/components/layout/container';
 import { Card, CardContent, CardFooter, CardTitle } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
-import { site } from '@/data/site';
+import { site, baseUrl } from '@/data/site';
 import { privateNav } from '@/data/sitemap';
-
-const baseUrl = 'https://bigyborka.ru';
 
 export const metadata: Metadata = {
   title: 'Услуги для частных лиц',

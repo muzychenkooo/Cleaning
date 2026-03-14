@@ -1,7 +1,5 @@
-import { site } from '@/data/site';
+import { site, baseUrl } from '@/data/site';
 import { services } from '@/data/services';
-
-const baseUrl = 'https://bigyborka.ru';
 
 export function LocalBusinessJsonLd() {
   const schema = {

@@ -1,10 +1,8 @@
 import type { Metadata } from 'next';
 import { Container } from '@/components/layout/container';
 import { Breadcrumbs } from '@/components/layout/breadcrumbs';
-import { site } from '@/data/site';
+import { site, baseUrl } from '@/data/site';
 import { completedReports } from '@/data/reports';
-
-const baseUrl = 'https://bigyborka.ru';
 
 type PageProps = {
   params: Promise<{ id: string }>;

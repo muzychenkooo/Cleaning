@@ -1,7 +1,6 @@
 import { MetadataRoute } from 'next';
 import { businessTypes } from '@/data/sitemap';
-
-const baseUrl = 'https://bigyborka.ru';
+import { baseUrl } from '@/data/site';
 
 export default function sitemap(): MetadataRoute.Sitemap {
   const staticPages: MetadataRoute.Sitemap = [

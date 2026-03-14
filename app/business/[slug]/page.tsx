@@ -3,9 +3,7 @@ import type { Metadata } from 'next';
 import { getBusinessBySlug, businessTypes } from '@/data/sitemap';
 import { getBusinessServiceContent } from '@/data/service-content';
 import { ServicePageTemplate } from '@/components/layout/service-page-template';
-import { site } from '@/data/site';
-
-const baseUrl = 'https://bigyborka.ru';
+import { site, baseUrl } from '@/data/site';
 
 type Props = { params: Promise<{ slug: string }> };
 

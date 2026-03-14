@@ -14,6 +14,7 @@ const nextConfig = {
   trailingSlash: true,
   env: {
     NEXT_PUBLIC_BASE_PATH: basePath,
+    NEXT_PUBLIC_SITE_URL: isGitHubPages ? 'https://muzychenkooo.github.io/Cleaning' : 'https://bigyborka.ru',
   },
   images: {
     unoptimized: true,

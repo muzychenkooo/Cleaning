@@ -3,10 +3,8 @@ import type { Metadata } from 'next';
 import { Breadcrumbs } from '@/components/layout/breadcrumbs';
 import { Container } from '@/components/layout/container';
 import { Button } from '@/components/ui/button';
-import { site } from '@/data/site';
+import { site, baseUrl } from '@/data/site';
 import { ReviewsCarousel } from '@/components/reviews/ReviewsCarousel';
-
-const baseUrl = 'https://bigyborka.ru';
 
 export const metadata: Metadata = {
   title: 'Отзывы',

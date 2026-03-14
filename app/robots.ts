@@ -1,6 +1,5 @@
 import { MetadataRoute } from 'next';
-
-const baseUrl = 'https://bigyborka.ru';
+import { baseUrl } from '@/data/site';
 
 export default function robots(): MetadataRoute.Robots {
   return {

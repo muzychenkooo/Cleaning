@@ -1,5 +1,8 @@
 import { mainNav, businessNav } from './sitemap';
 
+/** Canonical base URL: на GitHub Pages — muzychenkooo.github.io/Cleaning, локально — bigyborka.ru */
+export const baseUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://bigyborka.ru';
+
 export const site = {
   name: 'Большая Уборка',
   tagline: 'Клининговая компания',

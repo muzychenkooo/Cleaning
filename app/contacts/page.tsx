@@ -4,9 +4,7 @@ import { Breadcrumbs } from '@/components/layout/breadcrumbs';
 import { Container } from '@/components/layout/container';
 import { OrderForm } from '@/components/forms/order-form';
 import { SocialIconLinks } from '@/components/ui/social-icon-links';
-import { site } from '@/data/site';
-
-const baseUrl = 'https://bigyborka.ru';
+import { site, baseUrl } from '@/data/site';
 
 export const metadata: Metadata = {
   title: 'Контакты',

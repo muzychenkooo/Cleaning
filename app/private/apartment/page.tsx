@@ -1,9 +1,7 @@
 import type { Metadata } from 'next';
 import { ServicePageTemplate } from '@/components/layout/service-page-template';
 import { getPrivateServiceContent } from '@/data/service-content';
-import { site } from '@/data/site';
-
-const baseUrl = 'https://bigyborka.ru';
+import { site, baseUrl } from '@/data/site';
 
 export const metadata: Metadata = {
   title: 'Уборка квартир',

@@ -1,0 +1,2 @@
+# Git LFS: большие видео не засоряют репозиторий и не вызывают предупреждений GitHub
+*.mp4 filter=lfs diff=lfs merge=lfs -text
