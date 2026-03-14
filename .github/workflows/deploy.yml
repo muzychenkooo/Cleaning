@@ -8,13 +8,18 @@ on:
 permissions:
   contents: write
 
-# Только один деплой одновременно
 concurrency:
   group: pages
   cancel-in-progress: false
 
+# Ссылка для просмотра и отправки заказчику (подставьте свой репозиторий)
+env:
+  SITE_URL: https://muzychenkooo.github.io/Cleaning/
+
 jobs:
-  build-and-deploy:
+  # Шаг 1: сборка статики
+  build:
+    name: Build
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
@@ -37,9 +42,35 @@ jobs:
           GITHUB_PAGES: "true"
           NODE_ENV: "production"
 
-      - name: Deploy to gh-pages branch
+      - name: Upload site artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: site
+          path: out/
+
+  # Шаг 2: деплой в цепочке после успешной сборки
+  deploy:
+    name: Deploy
+    runs-on: ubuntu-latest
+    needs: build
+    steps:
+      - name: Download site artifact
+        uses: actions/download-artifact@v4
+        with:
+          name: site
+
+      - name: Deploy to GitHub Pages
         uses: peaceiris/actions-gh-pages@v3
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
-          publish_dir: ./out
+          publish_dir: ./site
           force_orphan: true
+
+      - name: Ссылка на сайт
+        run: |
+          echo "=============================================="
+          echo "Сайт выгружен и доступен по ссылке:"
+          echo "${{ env.SITE_URL }}"
+          echo "=============================================="
+          echo "Скопируйте ссылку и отправьте заказчику для просмотра."
+          echo "::notice title=Сайт опубликован::Ссылка для просмотра и заказчика: ${{ env.SITE_URL }}"
