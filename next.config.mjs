@@ -2,9 +2,9 @@
 
 // Для GitHub Pages: базовый путь и полный URL ассетов (включается при деплое)
 const isGitHubPages = process.env.GITHUB_PAGES === 'true';
-const basePath = isGitHubPages ? '/KliningCompany_MVP_site' : '';
+const basePath = isGitHubPages ? '/Cleaning' : '';
 // Полный URL для assetPrefix гарантирует загрузку CSS/JS на GitHub Pages
-const assetPrefix = isGitHubPages ? 'https://nickolascage52.github.io/KliningCompany_MVP_site/' : '';
+const assetPrefix = isGitHubPages ? 'https://muzychenkooo.github.io/Cleaning/' : '';
 
 const nextConfig = {
   reactStrictMode: true,
