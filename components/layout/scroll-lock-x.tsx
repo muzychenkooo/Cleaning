@@ -14,7 +14,6 @@ export function ScrollLockX() {
     // На тач-устройствах (мобильных) не трогаем скролл вообще — только десктоп
     const isTouch =
       'ontouchstart' in window ||
-      // eslint-disable-next-line @typescript-eslint/no-unnecessary-condition
       (typeof navigator !== 'undefined' && navigator.maxTouchPoints > 0);
     if (isTouch) return;
 
