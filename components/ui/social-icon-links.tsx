@@ -108,7 +108,6 @@ export function SocialIconLinks({
         className={cn(linkClass, linkSizeClass)}
         aria-label="Написать в MAX"
       >
-        <span className="sr-only">MAX</span>
         <Image
           src={assetUrl(SOCIAL_IMAGES.max)}
           alt=""
@@ -125,7 +124,6 @@ export function SocialIconLinks({
         className={cn(linkClass, linkSizeClass)}
         aria-label="ВКонтакте"
       >
-        <span className="sr-only">VK</span>
         <Image
           src={assetUrl(SOCIAL_IMAGES.vk)}
           alt=""
@@ -142,7 +140,6 @@ export function SocialIconLinks({
         className={cn(linkClass, linkSizeClass)}
         aria-label="Telegram"
       >
-        <span className="sr-only">Telegram</span>
         <Image
           src={assetUrl(SOCIAL_IMAGES.telegram)}
           alt=""

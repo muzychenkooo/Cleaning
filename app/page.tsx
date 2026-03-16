@@ -21,19 +21,19 @@ export default function HomePage() {
       <Hero />
       <Suspense fallback={<section id="rasschet" className="w-full py-16 sm:py-24 scroll-mt-24 bg-slate-50" />}>
         <QuizSection />
-      </Suspense>
+      </Suspense> 
       <ServicesSection />
       <AboutSection />
       <TrustSection />
-      <StepsSection />
+      <StepsSection /> 
       <PromoSection />
-      <ReviewsSection />
+      <ReviewsSection /> 
       <VideoReviewsSection />
-      <LeaderMessageSection />
+      <LeaderMessageSection /> 
       <TeamSection />
       <ContactQuestionsSection />
-      <GallerySection />
-      <ContactCtaSection />
+      <GallerySection /> 
+      <ContactCtaSection /> 
       <FAQSection />
     </div>
   );

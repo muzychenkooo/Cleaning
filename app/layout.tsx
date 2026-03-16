@@ -44,7 +44,7 @@ export default function RootLayout({
   return (
     <html lang="ru" className={montserrat.variable} suppressHydrationWarning>
       <head>
-        {/* Security hardening: referrer policy */}
+        {/*Security hardening: referrer policy*/}
         <meta name="referrer" content="strict-origin-when-cross-origin" />
       </head>
       <body className="min-h-screen flex flex-col font-sans antialiased m-0 p-0 w-full max-w-full min-w-0 overflow-x-clip">

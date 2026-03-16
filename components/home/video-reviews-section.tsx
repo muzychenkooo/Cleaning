@@ -148,32 +148,61 @@ export function VideoReviewsSection() {
     setOffset(newOffset);
   }, []);
 
-  const handlePrev = () => {
+  const clearBusyRef = React.useRef<ReturnType<typeof setTimeout> | null>(null);
+
+  React.useEffect(() => {
+    return () => {
+      if (clearBusyRef.current) clearTimeout(clearBusyRef.current);
+    };
+  }, []);
+
+  const clearBusyAfterTransition = React.useCallback(() => {
+    clearBusyRef.current = setTimeout(() => {
+      clearBusyRef.current = null;
+      setBusy(false);
+    }, 450);
+  }, []);
+
+  const handlePrev = React.useCallback(() => {
     if (busy) return;
+    if (clearBusyRef.current) clearTimeout(clearBusyRef.current);
     setBusy(true);
     moveTo(offsetRef.current - 1, true);
-  };
+    clearBusyAfterTransition();
+  }, [busy, moveTo, clearBusyAfterTransition]);
 
-  const handleNext = () => {
+  const handleNext = React.useCallback(() => {
     if (busy) return;
+    if (clearBusyRef.current) clearTimeout(clearBusyRef.current);
     setBusy(true);
     moveTo(offsetRef.current + 1, true);
-  };
+    clearBusyAfterTransition();
+  }, [busy, moveTo, clearBusyAfterTransition]);
 
-  const handleDotClick = (i: number) => {
-    if (busy) return;
-    const target = CLONE + i;
-    if (target === offsetRef.current) return;
-    setBusy(true);
-    moveTo(target, true);
-  };
+  const handleDotClick = React.useCallback(
+    (i: number) => {
+      if (busy) return;
+      const target = CLONE + i;
+      if (target === offsetRef.current) return;
+      if (clearBusyRef.current) clearTimeout(clearBusyRef.current);
+      setBusy(true);
+      moveTo(target, true);
+      clearBusyAfterTransition();
+    },
+    [busy, CLONE, moveTo, clearBusyAfterTransition],
+  );
 
   const cloneRef2 = React.useRef(CLONE);
   cloneRef2.current = CLONE;
 
   const handleTransitionEnd = React.useCallback(
     (e: React.TransitionEvent<HTMLDivElement>) => {
-      if (e.propertyName !== 'transform') return;
+      if (e.target !== e.currentTarget || e.propertyName !== 'transform') return;
+
+      if (clearBusyRef.current) {
+        clearTimeout(clearBusyRef.current);
+        clearBusyRef.current = null;
+      }
 
       const cur = offsetRef.current;
       const cl = cloneRef2.current;
@@ -233,14 +262,14 @@ export function VideoReviewsSection() {
 
           {/* Viewport */}
           <div
-            className="carousel-contain flex-1 min-w-0 max-w-full touch-pan-y"
+            className="carousel-contain flex-1 min-w-0 max-w-full overflow-hidden touch-pan-y"
             onTouchStart={handleTouchStart}
             onTouchEnd={handleTouchEnd}
           >
             <div
               style={trackStyle}
               onTransitionEnd={handleTransitionEnd}
-              className="flex"
+              className="flex shrink-0"
             >
               {EXTENDED.map((item, i) => (
                 <div

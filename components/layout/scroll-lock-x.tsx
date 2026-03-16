@@ -9,6 +9,15 @@ import * as React from 'react';
  */
 export function ScrollLockX() {
   React.useEffect(() => {
+    if (typeof window === 'undefined') return;
+
+    // На тач-устройствах (мобильных) не трогаем скролл вообще — только десктоп
+    const isTouch =
+      'ontouchstart' in window ||
+      // eslint-disable-next-line @typescript-eslint/no-unnecessary-condition
+      (typeof navigator !== 'undefined' && navigator.maxTouchPoints > 0);
+    if (isTouch) return;
+
     function forceNoScrollX() {
       document.documentElement.scrollLeft = 0;
       document.body.scrollLeft = 0;

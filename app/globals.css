@@ -228,10 +228,10 @@
     scrollbar-color: #cbd5e1 transparent;
   }
   /* Contain carousel overflow so it never affects document scrollWidth */
-  .carousel-contain {
+  /*.carousel-contain {
     contain: layout paint;
     overflow: clip;
-  }
+  }*/
 
   /* Hero banner: управление оригинальным/мобильным фоном и дополнительным затемнением */
   .hero-bg-original {

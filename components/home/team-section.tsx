@@ -166,34 +166,24 @@ export function TeamSection() {
           Наша команда
         </h2>
 
-        <div className="mt-8">
-          <div className="flex min-w-0 items-center gap-3 overflow-x-clip sm:gap-4">
-            <button
-              type="button"
-              onClick={handlePrev}
-              aria-label="Предыдущие сотрудники"
-              className="carousel-arrow flex h-10 w-10 shrink-0 items-center justify-center rounded-full border border-slate-300 bg-white text-slate-700 shadow-sm hover:bg-slate-50 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary-500 transition-colors text-lg select-none"
-            >
-              ‹
-            </button>
-
+        <div className="mt-8 relative min-w-0 overflow-x-clip">
+          <div
+            className="carousel-contain mx-10 sm:mx-12 overflow-hidden touch-pan-y"
+            onTouchStart={handleTouchStart}
+            onTouchEnd={handleTouchEnd}
+          >
             <div
-              className="carousel-contain flex-1 min-w-0 touch-pan-y"
-              onTouchStart={handleTouchStart}
-              onTouchEnd={handleTouchEnd}
+              style={trackStyle}
+              onTransitionEnd={handleTransitionEnd}
+              className="flex shrink-0"
             >
-              <div
-                style={trackStyle}
-                onTransitionEnd={handleTransitionEnd}
-                className="flex"
-              >
-                {EXTENDED.map((member, i) => (
-                  <div
-                    key={`${member.id}-${i}`}
-                    style={{ width: `${(1 / EXT_LEN) * 100}%` }}
-                    className="shrink-0 px-1 sm:px-2"
-                  >
-                    <div className="h-full rounded-xl border border-slate-200 bg-white p-3 text-center shadow-sm">
+              {EXTENDED.map((member, i) => (
+                <div
+                  key={`${member.id}-${i}`}
+                  style={{ width: `${(1 / EXT_LEN) * 100}%` }}
+                  className="shrink-0 pr-2 last:pr-0"
+                >
+                  <div className="h-full rounded-xl border border-slate-200 bg-white p-3 text-center shadow-sm">
                       <div className="mt-1.5 mx-1.5 w-[calc(100%-12px)] aspect-[4/3] rounded-xl overflow-hidden bg-slate-200 flex items-center justify-center">
                         {member.photo ? (
                           <Image
@@ -218,16 +208,25 @@ export function TeamSection() {
                 ))}
               </div>
             </div>
-
-            <button
-              type="button"
-              onClick={handleNext}
-              aria-label="Следующие сотрудники"
-              className="carousel-arrow flex h-10 w-10 shrink-0 items-center justify-center rounded-full border border-slate-300 bg-white text-slate-700 shadow-sm hover:bg-slate-50 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary-500 transition-colors text-lg select-none"
-            >
-              ›
-            </button>
-          </div>
+          <button
+            type="button"
+            onClick={handlePrev}
+            disabled={busy}
+            aria-label="Предыдущие сотрудники"
+            className="carousel-arrow absolute left-3 sm:left-4 top-1/2 -translate-y-1/2 z-10 flex h-10 w-10 sm:h-11 sm:w-11 items-center justify-center rounded-full border border-slate-300 bg-white text-slate-700 shadow-sm hover:bg-slate-50 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary-500 transition-colors disabled:opacity-40 text-lg select-none"
+          >
+            ‹
+          </button>
+          <button
+            type="button"
+            onClick={handleNext}
+            disabled={busy}
+            aria-label="Следующие сотрудники"
+            className="carousel-arrow absolute right-3 sm:right-4 top-1/2 -translate-y-1/2 z-10 flex h-10 w-10 sm:h-11 sm:w-11 items-center justify-center rounded-full border border-slate-300 bg-white text-slate-700 shadow-sm hover:bg-slate-50 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary-500 transition-colors disabled:opacity-40 text-lg select-none"
+          >
+            ›
+          </button>
+        </div>
 
           {/* Точки */}
           <div className="mt-4 flex justify-center gap-1" role="group" aria-label="Слайды команды">
@@ -248,7 +247,6 @@ export function TeamSection() {
               </button>
             ))}
           </div>
-        </div>
       </Container>
     </section>
   );

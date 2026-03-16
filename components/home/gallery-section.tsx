@@ -362,22 +362,21 @@ export function GallerySection() {
         </h2>
 
         <div className="mt-6 relative min-w-0 overflow-x-clip">
-          {/* Viewport — занимает почти всю ширину; стрелки поверх */}
           <div
-            className="carousel-contain mx-0 sm:mx-12 touch-pan-y"
+            className="carousel-contain mx-10 sm:mx-12 overflow-hidden touch-pan-y"
             onTouchStart={handleTouchStart}
             onTouchEnd={handleTouchEnd}
           >
             <div
               style={trackStyle}
               onTransitionEnd={handleTransitionEnd}
-              className="flex"
+              className="flex shrink-0"
             >
               {EXTENDED.map((photo, i) => (
                 <div
                   key={i}
                   style={{ width: `${(1 / EXT_LEN) * 100}%` }}
-                  className="shrink-0 px-1 sm:px-2"
+                  className="shrink-0 pr-2 last:pr-0"
                 >
                   <button
                     type="button"
@@ -390,7 +389,7 @@ export function GallerySection() {
                       alt={photo.alt}
                       fill
                       className="object-cover"
-                      sizes="(max-width: 639px) 100vw, 60vw"
+                      sizes="(max-width: 639px) 100vw, 50vw"
                       loading="lazy"
                     />
                   </button>
@@ -398,25 +397,21 @@ export function GallerySection() {
               ))}
             </div>
           </div>
-
-          {/* Prev — только на sm+, поверх фото, полупрозрачные; на мобиле скрыты, свайп работает */}
           <button
             type="button"
             onClick={handlePrev}
             disabled={busy}
             aria-label="Предыдущее фото"
-            className="carousel-arrow flex absolute left-3 sm:left-12 top-1/2 -translate-y-1/2 h-10 w-10 sm:h-11 sm:w-11 items-center justify-center rounded-full border-0 bg-white/70 shadow-md text-slate-800 hover:bg-white/85 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary-500 transition-colors disabled:opacity-40 text-xl sm:text-2xl select-none z-10"
+            className="carousel-arrow absolute left-3 sm:left-4 top-1/2 -translate-y-1/2 z-10 flex h-10 w-10 sm:h-11 sm:w-11 items-center justify-center rounded-full border border-slate-300 bg-white text-slate-700 shadow-sm hover:bg-slate-50 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary-500 transition-colors disabled:opacity-40 text-lg select-none"
           >
             ‹
           </button>
-
-          {/* Next */}
           <button
             type="button"
             onClick={handleNext}
             disabled={busy}
             aria-label="Следующее фото"
-            className="carousel-arrow flex absolute right-3 sm:right-12 top-1/2 -translate-y-1/2 h-10 w-10 sm:h-11 sm:w-11 items-center justify-center rounded-full border-0 bg-white/70 shadow-md text-slate-800 hover:bg-white/85 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary-500 transition-colors disabled:opacity-40 text-xl sm:text-2xl select-none z-10"
+            className="carousel-arrow absolute right-3 sm:right-4 top-1/2 -translate-y-1/2 z-10 flex h-10 w-10 sm:h-11 sm:w-11 items-center justify-center rounded-full border border-slate-300 bg-white text-slate-700 shadow-sm hover:bg-slate-50 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary-500 transition-colors disabled:opacity-40 text-lg select-none"
           >
             ›
           </button>
@@ -537,26 +532,26 @@ export function GallerySection() {
           />
         </div>
 
-        {/* ── Выполненные работы (слайдер: 1 на мобиле, 3 на ПК) ── */}
+        {/* ── Выполненные работы (слайдер: 1 на мобиле, 2 на планшете, 3 на ПК) ── */}
         <h2 className="font-display mt-16 text-3xl font-bold tracking-tight text-slate-900 sm:text-4xl">
           Выполненные работы
         </h2>
         <div className="mt-6 relative min-w-0 overflow-x-clip">
           <div
-            className="carousel-contain mx-0 sm:mx-12 touch-pan-y"
+            className="carousel-contain mx-10 sm:mx-12 overflow-hidden touch-pan-y"
             onTouchStart={reportsHandleTouchStart}
             onTouchEnd={reportsHandleTouchEnd}
           >
             <div
               style={reportsTrackStyle}
               onTransitionEnd={reportsHandleTransitionEnd}
-              className="flex"
+              className="flex shrink-0"
             >
               {REPORTS_EXTENDED.map((report, i) => (
                 <div
                   key={`${report.id}-${i}`}
                   style={{ width: `${(1 / REPORTS_EXT_LEN) * 100}%` }}
-                  className="shrink-0 px-1 sm:px-2"
+                  className="shrink-0 pr-2 last:pr-0"
                 >
                   <div className="rounded-xl border border-slate-200 bg-white p-6 h-full flex flex-col">
                     <div className="relative w-full aspect-[16/9] rounded-lg overflow-hidden bg-slate-200">
@@ -588,13 +583,12 @@ export function GallerySection() {
               ))}
             </div>
           </div>
-
           <button
             type="button"
             onClick={reportsHandlePrev}
             disabled={reportsBusy}
             aria-label="Предыдущие работы"
-            className="carousel-arrow flex absolute left-3 sm:left-12 top-1/2 -translate-y-1/2 h-10 w-10 sm:h-11 sm:w-11 items-center justify-center rounded-full border-0 bg-white/70 shadow-md text-slate-800 hover:bg-white/85 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary-500 transition-colors disabled:opacity-40 text-xl sm:text-2xl select-none z-10"
+            className="carousel-arrow absolute left-3 sm:left-4 top-1/2 -translate-y-1/2 z-10 flex h-10 w-10 sm:h-11 sm:w-11 items-center justify-center rounded-full border border-slate-300 bg-white text-slate-700 shadow-sm hover:bg-slate-50 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary-500 transition-colors disabled:opacity-40 text-lg select-none"
           >
             ‹
           </button>
@@ -603,7 +597,7 @@ export function GallerySection() {
             onClick={reportsHandleNext}
             disabled={reportsBusy}
             aria-label="Следующие работы"
-            className="carousel-arrow flex absolute right-3 sm:right-12 top-1/2 -translate-y-1/2 h-10 w-10 sm:h-11 sm:w-11 items-center justify-center rounded-full border-0 bg-white/70 shadow-md text-slate-800 hover:bg-white/85 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary-500 transition-colors disabled:opacity-40 text-xl sm:text-2xl select-none z-10"
+            className="carousel-arrow absolute right-3 sm:right-4 top-1/2 -translate-y-1/2 z-10 flex h-10 w-10 sm:h-11 sm:w-11 items-center justify-center rounded-full border border-slate-300 bg-white text-slate-700 shadow-sm hover:bg-slate-50 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary-500 transition-colors disabled:opacity-40 text-lg select-none"
           >
             ›
           </button>
