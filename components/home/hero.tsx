@@ -54,16 +54,6 @@ export function Hero() {
         aria-hidden
         className="absolute inset-0 hidden lg:block pointer-events-none bg-black/60 hero-desktop-overlay"
       />
-      {/* Мобильный баннер: отдельное изображение для 875px и ниже */}
-      <div className="hero-mobile-image relative w-full max-w-[480px] mx-auto mt-4 lg:hidden">
-        {/* eslint-disable-next-line @next/next/no-img-element */}
-        <img
-          src={assetUrl('/assets/banner/баннер_мобилка.png')}
-          alt="Клининговая компания «Большая уборка»"
-          className="block h-auto banner-mobile-img"
-          loading="lazy"
-        />
-      </div>
       {/* Затемнение: базовый градиент + дополнительный слой на точке 876px */}
       <div
         aria-hidden

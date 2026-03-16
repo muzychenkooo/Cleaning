@@ -2,6 +2,7 @@
 
 import * as React from 'react';
 import { cn } from '@/lib/utils';
+import { useExclusiveVideoPlayback } from '@/lib/use-exclusive-video-playback';
 
 interface VideoWithOverlayProps {
   /** URL of the video file */
@@ -33,6 +34,8 @@ export function VideoWithOverlay({
 }: VideoWithOverlayProps) {
   const videoRef = React.useRef<HTMLVideoElement>(null);
   const [playing, setPlaying] = React.useState(false);
+
+  useExclusiveVideoPlayback(videoRef);
 
   const handlePlay = () => {
     // Hide overlay immediately; even if autoplay is blocked, native controls remain

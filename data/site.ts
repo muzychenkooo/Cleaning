@@ -9,7 +9,7 @@ export const site = {
   description: 'Профессиональная уборка для частных лиц и организаций. Москва и Московская область.',
   phone: '+7 (995) 797-99-96',
   phoneDisplay: '+7 (995) 797-99-96',
-  phoneRaw: '79957979996',
+  phoneRaw: '+79957979996',
   email: 'biguborka@yandex.ru',
   schedule: 'Круглосуточно',
   region: 'Москва и Московская область',

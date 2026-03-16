@@ -15,6 +15,8 @@ import {
 } from '@/lib/form-validation';
 import { PhoneInput } from '@/components/forms/PhoneInput';
 import { CyrillicInput } from '@/components/forms/CyrillicInput';
+import { CaptchaModal } from '@/components/anti-spam/CaptchaModal';
+import { useProtectedSubmit } from '@/hooks/useProtectedSubmit';
 
 const OBJECT_TYPES = [
   { value: 'apartment', label: 'Квартира' },
@@ -65,35 +67,52 @@ export function OrderCleaningBlock() {
   const watchObjectType = objectType.watch('objectType');
   const isWashing = watchObjectType === 'windows';
 
-  const onSubmit = async (data: OrderCleaningFormData) => {
-    if (data.honeypot) return;
-    if (Date.now() - mountedAt.current < MIN_SUBMIT_SECONDS * 1000) return;
-    setSubmitting(true);
-    try {
-      await new Promise((r) => setTimeout(r, 800));
-      trackFormSubmit('order-cleaning');
-      objectType.reset({
-        honeypot: '',
-        objectType: 'apartment',
-        cleaningType: 'general',
-        washingType: 'seasonal',
-        area: 0,
-        name: '',
-        phone: '+7',
-        consent: false,
-      });
-      setSuccessOpen(true);
-    } finally {
-      setSubmitting(false);
-    }
-  };
+  const performSubmit = React.useCallback(
+    async (data: OrderCleaningFormData) => {
+      if (data.honeypot) return;
+      if (Date.now() - mountedAt.current < MIN_SUBMIT_SECONDS * 1000) return;
+      setSubmitting(true);
+      try {
+        await new Promise((r) => setTimeout(r, 800));
+        trackFormSubmit('order-cleaning');
+        objectType.reset({
+          honeypot: '',
+          objectType: 'apartment',
+          cleaningType: 'general',
+          washingType: 'seasonal',
+          area: 0,
+          name: '',
+          phone: '+7',
+          consent: false,
+        });
+        setSuccessOpen(true);
+      } finally {
+        setSubmitting(false);
+      }
+    },
+    [objectType],
+  );
+
+  const {
+    initiateSubmit,
+    isCaptchaOpen,
+    onCaptchaVerified,
+    onCaptchaCancel,
+  } = useProtectedSubmit<OrderCleaningFormData>('order-cleaning-form', performSubmit);
+
+  const guardedSubmit = React.useCallback(
+    (data: OrderCleaningFormData) => {
+      initiateSubmit(data);
+    },
+    [initiateSubmit],
+  );
 
   return (
     <>
       <div className="mx-auto w-full min-w-0 max-w-full xl:max-w-[1280px] px-4 sm:px-6 lg:px-8">
         <form
           id="order-cleaning-form"
-          onSubmit={objectType.handleSubmit(onSubmit)}
+          onSubmit={objectType.handleSubmit(guardedSubmit)}
           noValidate
           className="lg:grid lg:grid-cols-2 lg:gap-0 overflow-hidden rounded-2xl border border-slate-200 bg-white shadow-lg shadow-slate-200/50"
         >
@@ -313,6 +332,11 @@ export function OrderCleaningBlock() {
           </div>
         </div>
       )}
+      <CaptchaModal
+        isOpen={isCaptchaOpen}
+        onVerified={onCaptchaVerified}
+        onCancel={onCaptchaCancel}
+      />
     </>
   );
 }

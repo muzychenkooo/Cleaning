@@ -3,6 +3,7 @@
 import * as React from 'react';
 import { Container } from '@/components/layout/container';
 import { assetUrl } from '@/lib/asset-url';
+import { useExclusiveVideoPlayback } from '@/lib/use-exclusive-video-playback';
 
 /* ─── Source of truth: only videos present in Наполнение/фото/Видеоотзывы ── */
 const videoReviews = [
@@ -10,6 +11,7 @@ const videoReviews = [
   { id: '2', name: 'Отзыв Маргариты', src: assetUrl('/assets/video-reviews/margarita.mp4') },
   { id: '3', name: 'Отзыв Ольги',     src: assetUrl('/assets/video-reviews/olga.mov')      },
   { id: '4', name: 'Отзыв Алексея',   src: assetUrl('/assets/video-reviews/aleksei.mp4')   },
+  { id: '5', name: 'Отзыв Любови',    src: assetUrl('/assets/video-reviews/lybov.mov')     },
 ];
 
 const TOTAL = videoReviews.length;
@@ -31,6 +33,8 @@ function buildExtended(visible: number) {
 function VideoCard({ src, name }: { src: string; name: string }) {
   const videoRef = React.useRef<HTMLVideoElement>(null);
   const [playing, setPlaying] = React.useState(false);
+
+  useExclusiveVideoPlayback(videoRef);
 
   const handlePlay = (e: React.MouseEvent) => {
     e.stopPropagation();

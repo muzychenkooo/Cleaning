@@ -47,21 +47,36 @@ export function Header() {
             />
           </Link>
 
-          {/* Навигация (десктоп) и бургер (мобильный) */}
+          {/* Навигация (десктоп) и бургер + иконка звонка (мобильный) */}
           <div className="flex min-w-0 flex-1 items-center justify-end overflow-visible min-[1260px]:min-w-0">
             <MainNav />
-            <button
-              ref={burgerRef}
-              type="button"
-              className="inline-flex h-10 w-10 shrink-0 items-center justify-center rounded-lg border border-slate-300 bg-white text-slate-700 hover:bg-slate-50 focus:outline-none focus-visible:ring-2 focus-visible:ring-primary-500 focus-visible:ring-offset-2 min-[1260px]:hidden"
-              onClick={() => setMobileOpen((v) => !v)}
-              aria-expanded={mobileOpen}
-              aria-label="Меню"
-              aria-controls="mobile-nav-drawer"
-            >
-              <span className="sr-only">Меню</span>
-              {mobileOpen ? <span aria-hidden>✕</span> : <span aria-hidden>☰</span>}
-            </button>
+            <div className="flex items-center gap-2 min-[1260px]:hidden">
+              <Link
+                href={`tel:${site.phoneRaw}`}
+                aria-label={`Позвонить ${phoneDisplay}`}
+                className="inline-flex h-10 w-10 shrink-0 items-center justify-center cursor-pointer"
+              >
+                <Image
+                  src={assetUrl('/assets/icons/icons8-телефонный-звонок-50.png')}
+                  alt="Позвонить"
+                  width={35}
+                  height={35}
+                  className="h-[27px] w-[27px]"
+                />
+              </Link>
+              <button
+                ref={burgerRef}
+                type="button"
+                className="inline-flex h-10 w-10 shrink-0 items-center justify-center rounded-lg border border-slate-300 bg-white text-slate-700 hover:bg-slate-50 focus:outline-none focus-visible:ring-2 focus-visible:ring-primary-500 focus-visible:ring-offset-2"
+                onClick={() => setMobileOpen((v) => !v)}
+                aria-expanded={mobileOpen}
+                aria-label="Меню"
+                aria-controls="mobile-nav-drawer"
+              >
+                <span className="sr-only">Меню</span>
+                {mobileOpen ? <span aria-hidden>✕</span> : <span aria-hidden>☰</span>}
+              </button>
+            </div>
           </div>
         </div>
       </Container>

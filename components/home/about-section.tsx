@@ -53,9 +53,9 @@ export function AboutSection() {
             </p>
           </div>
 
-          {/* Right: square video без рамки; на мобильной — меньше, остаётся квадрат */}
-          <div className="flex min-h-0 items-center justify-center p-4 sm:p-5">
-            <div className="aspect-square w-full min-w-0 max-w-[280px] overflow-hidden rounded-xl bg-slate-900 sm:max-w-[380px] lg:max-w-[460px]">
+          {/* Right: видео — на мобильной квадрат, на десктопе тянется по высоте текста и выровнено вправо */}
+          <div className="flex min-h-0 items-center justify-center p-4 sm:p-5 lg:items-stretch lg:justify-end lg:p-0">
+            <div className="aspect-square w-full min-w-0 max-w-[280px] overflow-hidden rounded-xl bg-slate-900 sm:max-w-[380px] lg:h-full lg:w-full lg:max-w-[520px] xl:max-w-[600px] 2xl:max-w-[680px] lg:aspect-[4/3]">
               <VideoWithOverlay
                 src={assetUrl('/assets/about/about-video.mp4')}
                 poster={assetUrl('/assets/about/about-video-poster.png')}

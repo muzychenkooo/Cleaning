@@ -17,6 +17,8 @@ import { CyrillicInput } from '@/components/forms/CyrillicInput';
 import { DatePicker } from '@/components/forms/DatePicker';
 import { TimePicker } from '@/components/forms/TimePicker';
 import { cn } from '@/lib/utils';
+import { CaptchaModal } from '@/components/anti-spam/CaptchaModal';
+import { useProtectedSubmit } from '@/hooks/useProtectedSubmit';
 
 const QUIZ_STORAGE_KEY = 'quiz_state';
 
@@ -262,16 +264,37 @@ export function QuizWizard({ onSuccessClose }: QuizWizardProps = {}) {
     },
   });
 
-  const onSubmitContacts = (data: ContactsForm) => {
-    const elapsed = Date.now() - submitStartTime;
-    if (elapsed < 2000) return;
-    if (data.website) return;
-    update({ name: data.name, phone: data.phone, consent: data.consent });
-    setSubmitted(true);
-    if (typeof window !== 'undefined' && 'gtag' in window) {
-      (window as unknown as { gtag: (a: string, b: string, c?: object) => void }).gtag?.('event', 'quiz_submit', {});
-    }
-  };
+  const performContactsSubmit = React.useCallback(
+    (data: ContactsForm) => {
+      const elapsed = Date.now() - submitStartTime;
+      if (elapsed < 2000) return;
+      if (data.website) return;
+      update({ name: data.name, phone: data.phone, consent: data.consent });
+      setSubmitted(true);
+      if (typeof window !== 'undefined' && 'gtag' in window) {
+        (window as unknown as { gtag: (a: string, b: string, c?: object) => void }).gtag?.(
+          'event',
+          'quiz_submit',
+          {},
+        );
+      }
+    },
+    [submitStartTime, update],
+  );
+
+  const {
+    initiateSubmit: initiateQuizContactsSubmit,
+    isCaptchaOpen,
+    onCaptchaVerified,
+    onCaptchaCancel,
+  } = useProtectedSubmit<ContactsForm>('quiz-contacts', performContactsSubmit);
+
+  const guardedContactsSubmit = React.useCallback(
+    (data: ContactsForm) => {
+      initiateQuizContactsSubmit(data);
+    },
+    [initiateQuizContactsSubmit],
+  );
 
   if (submitted) {
     return (
@@ -867,7 +890,7 @@ export function QuizWizard({ onSuccessClose }: QuizWizardProps = {}) {
                     </p>
                   )}
                   <form
-                    onSubmit={contactsForm.handleSubmit(onSubmitContacts)}
+                    onSubmit={contactsForm.handleSubmit(guardedContactsSubmit)}
                     className="mt-6 space-y-4"
                   >
                     <input
@@ -1076,6 +1099,11 @@ export function QuizWizard({ onSuccessClose }: QuizWizardProps = {}) {
           <QuizSummaryCard state={state} discount={discount} />
         </div>
       </div>
+      <CaptchaModal
+        isOpen={isCaptchaOpen}
+        onVerified={onCaptchaVerified}
+        onCancel={onCaptchaCancel}
+      />
     </div>
   );
 }

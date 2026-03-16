@@ -359,16 +359,26 @@ function initialsFromName(name: string): string {
   return (parts[0][0] + parts[parts.length - 1][0]).toUpperCase();
 }
 
-export const reviews: Review[] = reviewsData.flatMap((group) =>
-  group.reviews.map((r) => ({
-    id: r.id,
-    platform: group.platformId,
-    platformLabel: group.platformLabel,
-    platformUrl: group.platformUrl,
-    authorName: r.authorName,
-    initials: initialsFromName(r.authorName),
-    date: r.date,
-    rating: r.rating,
-    text: r.text,
-  })),
-);
+// Нелинейный порядок по сервисам: round-robin по платформам (g1,y1,d1,a1,p1, g2,y2,...)
+const maxReviewsPerPlatform = Math.max(...reviewsData.map((g) => g.reviews.length));
+const interleaved: Review[] = [];
+for (let i = 0; i < maxReviewsPerPlatform; i++) {
+  for (const group of reviewsData) {
+    const r = group.reviews[i];
+    if (r) {
+      interleaved.push({
+        id: r.id,
+        platform: group.platformId,
+        platformLabel: group.platformLabel,
+        platformUrl: group.platformUrl,
+        authorName: r.authorName,
+        initials: initialsFromName(r.authorName),
+        date: r.date,
+        rating: r.rating,
+        text: r.text,
+      });
+    }
+  }
+}
+
+export const reviews: Review[] = interleaved;

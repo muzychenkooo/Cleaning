@@ -168,7 +168,7 @@ export function TeamSection() {
 
         <div className="mt-8 relative min-w-0 overflow-x-clip">
           <div
-            className="carousel-contain mx-10 sm:mx-12 overflow-hidden touch-pan-y"
+            className="carousel-contain mx-2 sm:mx-12 overflow-hidden touch-pan-y"
             onTouchStart={handleTouchStart}
             onTouchEnd={handleTouchEnd}
           >
@@ -181,7 +181,7 @@ export function TeamSection() {
                 <div
                   key={`${member.id}-${i}`}
                   style={{ width: `${(1 / EXT_LEN) * 100}%` }}
-                  className="shrink-0 pr-2 last:pr-0"
+                  className="shrink-0 pr-1 sm:pr-2 last:pr-0"
                 >
                   <div className="h-full rounded-xl border border-slate-200 bg-white p-3 text-center shadow-sm">
                       <div className="mt-1.5 mx-1.5 w-[calc(100%-12px)] aspect-[4/3] rounded-xl overflow-hidden bg-slate-200 flex items-center justify-center">

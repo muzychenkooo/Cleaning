@@ -60,8 +60,11 @@ export function LeaderMessageSection() {
               </p>
             </div>
             <p className="mt-6 text-slate-600 leading-relaxed">
-              <a href="#" className="text-primary-600 hover:text-primary-700 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary-500 rounded-sm">
-                почта
+              <a
+                href="mailto:boss@biguborka.ru"
+                className="text-primary-600 hover:text-primary-700 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary-500 rounded-sm"
+              >
+                boss@biguborka.ru
               </a>
             </p>
           </div>

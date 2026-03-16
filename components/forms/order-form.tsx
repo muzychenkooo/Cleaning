@@ -14,6 +14,8 @@ import { CyrillicInput } from '@/components/forms/CyrillicInput';
 import { AddressInput } from '@/components/forms/AddressInput';
 import { DatePicker } from '@/components/forms/DatePicker';
 import { TimePicker } from '@/components/forms/TimePicker';
+import { CaptchaModal } from '@/components/anti-spam/CaptchaModal';
+import { useProtectedSubmit } from '@/hooks/useProtectedSubmit';
 
 const MIN_SUBMIT_SECONDS = 3;
 
@@ -58,34 +60,51 @@ export function OrderForm({
     },
   });
 
-  const onSubmit = async (data: OrderFormData) => {
-    if (data.honeypot) return;
-    if (Date.now() - mountedAt.current < MIN_SUBMIT_SECONDS * 1000) return;
-    setSubmitting(true);
-    try {
-      await new Promise((r) => setTimeout(r, 800));
-      trackConversion(formName);
-      reset({
-        honeypot: '',
-        name: '',
-        phone: '+7',
-        address: '',
-        date: '',
-        time: '',
-        serviceType: '',
-        consent: false,
-      });
-      setSuccessOpen(true);
-      onSuccess?.();
-    } finally {
-      setSubmitting(false);
-    }
-  };
+  const performSubmit = React.useCallback(
+    async (data: OrderFormData) => {
+      if (data.honeypot) return;
+      if (Date.now() - mountedAt.current < MIN_SUBMIT_SECONDS * 1000) return;
+      setSubmitting(true);
+      try {
+        await new Promise((r) => setTimeout(r, 800));
+        trackConversion(formName);
+        reset({
+          honeypot: '',
+          name: '',
+          phone: '+7',
+          address: '',
+          date: '',
+          time: '',
+          serviceType: '',
+          consent: false,
+        });
+        setSuccessOpen(true);
+        onSuccess?.();
+      } finally {
+        setSubmitting(false);
+      }
+    },
+    [formName, onSuccess, reset],
+  );
+
+  const {
+    initiateSubmit,
+    isCaptchaOpen,
+    onCaptchaVerified,
+    onCaptchaCancel,
+  } = useProtectedSubmit<OrderFormData>('order-form', performSubmit);
+
+  const guardedSubmit = React.useCallback(
+    (data: OrderFormData) => {
+      initiateSubmit(data);
+    },
+    [initiateSubmit],
+  );
 
   return (
     <>
       <form
-        onSubmit={handleSubmit(onSubmit)}
+        onSubmit={handleSubmit(guardedSubmit)}
         className={cn('w-full min-w-0 space-y-4', className)}
         noValidate
       >
@@ -255,6 +274,11 @@ export function OrderForm({
           {submitting ? 'Отправка…' : submitLabel}
         </Button>
       </form>
+      <CaptchaModal
+        isOpen={isCaptchaOpen}
+        onVerified={onCaptchaVerified}
+        onCancel={onCaptchaCancel}
+      />
       {successOpen && (
         <div className="fixed inset-0 z-[100] flex items-center justify-center p-4">
           <div

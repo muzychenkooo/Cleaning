@@ -363,7 +363,7 @@ export function GallerySection() {
 
         <div className="mt-6 relative min-w-0 overflow-x-clip">
           <div
-            className="carousel-contain mx-10 sm:mx-12 overflow-hidden touch-pan-y"
+            className="carousel-contain mx-2 sm:mx-12 overflow-hidden touch-pan-y"
             onTouchStart={handleTouchStart}
             onTouchEnd={handleTouchEnd}
           >
@@ -376,7 +376,7 @@ export function GallerySection() {
                 <div
                   key={i}
                   style={{ width: `${(1 / EXT_LEN) * 100}%` }}
-                  className="shrink-0 pr-2 last:pr-0"
+                  className="shrink-0 pr-1 sm:pr-2 last:pr-0"
                 >
                   <button
                     type="button"
@@ -517,14 +517,14 @@ export function GallerySection() {
         </h2>
         <div className="mt-6 flex flex-col gap-5 sm:flex-row sm:items-start">
           <VideoWithOverlay
-            src={assetUrl('/assets/videos/video1.mp4')}
+            src={assetUrl('/assets/videos/video01.mp4')}
             poster={assetUrl('/assets/gallery/video1-poster.png')}
             label="Видео с объектов — 1"
             wrapperClassName="flex-1 rounded-xl bg-slate-900 shadow-sm"
             videoClassName="w-full aspect-video object-cover"
           />
           <VideoWithOverlay
-            src={assetUrl('/assets/videos/video2.mp4')}
+            src={assetUrl('/assets/videos/video02.mp4')}
             poster={assetUrl('/assets/gallery/video2-poster.png')}
             label="Видео с объектов — 2"
             wrapperClassName="flex-1 rounded-xl bg-slate-900 shadow-sm"
@@ -538,7 +538,7 @@ export function GallerySection() {
         </h2>
         <div className="mt-6 relative min-w-0 overflow-x-clip">
           <div
-            className="carousel-contain mx-10 sm:mx-12 overflow-hidden touch-pan-y"
+            className="carousel-contain mx-2 sm:mx-12 overflow-hidden touch-pan-y"
             onTouchStart={reportsHandleTouchStart}
             onTouchEnd={reportsHandleTouchEnd}
           >
@@ -551,7 +551,7 @@ export function GallerySection() {
                 <div
                   key={`${report.id}-${i}`}
                   style={{ width: `${(1 / REPORTS_EXT_LEN) * 100}%` }}
-                  className="shrink-0 pr-2 last:pr-0"
+                  className="shrink-0 pr-1 sm:pr-2 last:pr-0"
                 >
                   <div className="rounded-xl border border-slate-200 bg-white p-6 h-full flex flex-col">
                     <div className="relative w-full aspect-[16/9] rounded-lg overflow-hidden bg-slate-200">
@@ -588,7 +588,7 @@ export function GallerySection() {
             onClick={reportsHandlePrev}
             disabled={reportsBusy}
             aria-label="Предыдущие работы"
-            className="carousel-arrow absolute left-3 sm:left-4 top-1/2 -translate-y-1/2 z-10 flex h-10 w-10 sm:h-11 sm:w-11 items-center justify-center rounded-full border border-slate-300 bg-white text-slate-700 shadow-sm hover:bg-slate-50 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary-500 transition-colors disabled:opacity-40 text-lg select-none"
+            className="carousel-arrow absolute left-3 sm:left-4 top-[45%] -translate-y-1/2 z-10 flex h-10 w-10 sm:h-11 sm:w-11 items-center justify-center rounded-full border border-slate-300 bg-white text-slate-700 shadow-sm hover:bg-slate-50 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary-500 transition-colors disabled:opacity-40 text-lg select-none"
           >
             ‹
           </button>
@@ -597,7 +597,7 @@ export function GallerySection() {
             onClick={reportsHandleNext}
             disabled={reportsBusy}
             aria-label="Следующие работы"
-            className="carousel-arrow absolute right-3 sm:right-4 top-1/2 -translate-y-1/2 z-10 flex h-10 w-10 sm:h-11 sm:w-11 items-center justify-center rounded-full border border-slate-300 bg-white text-slate-700 shadow-sm hover:bg-slate-50 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary-500 transition-colors disabled:opacity-40 text-lg select-none"
+            className="carousel-arrow absolute right-3 sm:right-4 top-[45%] -translate-y-1/2 z-10 flex h-10 w-10 sm:h-11 sm:w-11 items-center justify-center rounded-full border border-slate-300 bg-white text-slate-700 shadow-sm hover:bg-slate-50 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary-500 transition-colors disabled:opacity-40 text-lg select-none"
           >
             ›
           </button>
