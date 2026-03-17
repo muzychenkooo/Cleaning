@@ -19,7 +19,7 @@ export function HeaderCtas({ variant, phoneDisplay }: Props) {
     return (
       <div className="flex shrink-0 flex-nowrap items-center gap-2 xl:gap-2.5" style={{ minWidth: '220px' }}>
         <a
-          href={`tel:+${site.phoneRaw}`}
+          href={`tel:${site.phoneRaw}`}
           className="shrink-0 whitespace-nowrap text-sm font-medium text-slate-700 hover:text-primary-600"
           title={phoneDisplay}
         >
@@ -53,7 +53,7 @@ export function HeaderCtas({ variant, phoneDisplay }: Props) {
   return (
     <div className="flex shrink-0 flex-nowrap items-center gap-2">
       <a
-        href={`tel:+${site.phoneRaw}`}
+        href={`tel:${site.phoneRaw}`}
         className="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg text-slate-700 hover:bg-slate-100 hover:text-primary-600 md:hidden"
         aria-label="Позвонить"
       >

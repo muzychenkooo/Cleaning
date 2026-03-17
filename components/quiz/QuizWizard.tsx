@@ -17,8 +17,6 @@ import { CyrillicInput } from '@/components/forms/CyrillicInput';
 import { DatePicker } from '@/components/forms/DatePicker';
 import { TimePicker } from '@/components/forms/TimePicker';
 import { cn } from '@/lib/utils';
-import { CaptchaModal } from '@/components/anti-spam/CaptchaModal';
-import { useProtectedSubmit } from '@/hooks/useProtectedSubmit';
 
 const QUIZ_STORAGE_KEY = 'quiz_state';
 
@@ -282,19 +280,6 @@ export function QuizWizard({ onSuccessClose }: QuizWizardProps = {}) {
     [submitStartTime, update],
   );
 
-  const {
-    initiateSubmit: initiateQuizContactsSubmit,
-    isCaptchaOpen,
-    onCaptchaVerified,
-    onCaptchaCancel,
-  } = useProtectedSubmit<ContactsForm>('quiz-contacts', performContactsSubmit);
-
-  const guardedContactsSubmit = React.useCallback(
-    (data: ContactsForm) => {
-      initiateQuizContactsSubmit(data);
-    },
-    [initiateQuizContactsSubmit],
-  );
 
   if (submitted) {
     return (
@@ -890,7 +875,7 @@ export function QuizWizard({ onSuccessClose }: QuizWizardProps = {}) {
                     </p>
                   )}
                   <form
-                    onSubmit={contactsForm.handleSubmit(guardedContactsSubmit)}
+                    onSubmit={contactsForm.handleSubmit(performContactsSubmit)}
                     className="mt-6 space-y-4"
                   >
                     <input
@@ -1099,11 +1084,6 @@ export function QuizWizard({ onSuccessClose }: QuizWizardProps = {}) {
           <QuizSummaryCard state={state} discount={discount} />
         </div>
       </div>
-      <CaptchaModal
-        isOpen={isCaptchaOpen}
-        onVerified={onCaptchaVerified}
-        onCancel={onCaptchaCancel}
-      />
     </div>
   );
 }

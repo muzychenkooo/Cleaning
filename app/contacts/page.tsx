@@ -32,7 +32,7 @@ export default function ContactsPage() {
         <div className="mt-10 grid gap-10 lg:grid-cols-2">
           <div className="max-w-xl">
             <h2 className="text-lg font-semibold text-slate-900">Телефон</h2>
-            <a href={`tel:+${site.phoneRaw}`} className="mt-1 block text-primary-600 font-medium hover:underline">
+            <a href={`tel:${site.phoneRaw}`} className="mt-1 block text-primary-600 font-medium hover:underline">
               {site.phone}
             </a>
             <p className="mt-4 text-sm text-slate-500">{site.schedule}</p>

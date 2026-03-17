@@ -195,7 +195,7 @@ export default function PrivateLandingPage() {
             <Link href="/?open=quiz#rasschet">{site.cta.calculate}</Link>
           </Button>
           <Button asChild variant="outline">
-            <a href={`tel:+${site.phoneRaw}`}>Позвонить</a>
+            <a href={`tel:${site.phoneRaw}`}>Позвонить</a>
           </Button>
         </div>
       </Container>

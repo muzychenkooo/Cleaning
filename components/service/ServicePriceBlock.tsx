@@ -29,10 +29,10 @@ export function ServicePriceBlock({ priceFrom, priceNote, priceFaq }: Props) {
         )}
         <div className="mt-6 flex flex-wrap gap-3">
           <Button asChild>
-            <Link href="/quiz/">{site.cta.calculate}</Link>
+            <Link href="/#zayavka">{site.cta.calculate}</Link>
           </Button>
           <Button asChild variant="outline">
-            <a href={`tel:+${site.phoneRaw}`}>Позвонить для расчёта</a>
+            <a href={`tel:${site.phoneRaw}`}>Позвонить для расчёта</a>
           </Button>
         </div>
         {priceFaq && priceFaq.length > 0 && (

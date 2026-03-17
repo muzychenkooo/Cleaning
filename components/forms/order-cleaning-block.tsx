@@ -15,8 +15,6 @@ import {
 } from '@/lib/form-validation';
 import { PhoneInput } from '@/components/forms/PhoneInput';
 import { CyrillicInput } from '@/components/forms/CyrillicInput';
-import { CaptchaModal } from '@/components/anti-spam/CaptchaModal';
-import { useProtectedSubmit } from '@/hooks/useProtectedSubmit';
 
 const OBJECT_TYPES = [
   { value: 'apartment', label: 'Квартира' },
@@ -93,26 +91,12 @@ export function OrderCleaningBlock() {
     [objectType],
   );
 
-  const {
-    initiateSubmit,
-    isCaptchaOpen,
-    onCaptchaVerified,
-    onCaptchaCancel,
-  } = useProtectedSubmit<OrderCleaningFormData>('order-cleaning-form', performSubmit);
-
-  const guardedSubmit = React.useCallback(
-    (data: OrderCleaningFormData) => {
-      initiateSubmit(data);
-    },
-    [initiateSubmit],
-  );
-
   return (
     <>
       <div className="mx-auto w-full min-w-0 max-w-full xl:max-w-[1280px] px-4 sm:px-6 lg:px-8">
         <form
           id="order-cleaning-form"
-          onSubmit={objectType.handleSubmit(guardedSubmit)}
+          onSubmit={objectType.handleSubmit(performSubmit)}
           noValidate
           className="lg:grid lg:grid-cols-2 lg:gap-0 overflow-hidden rounded-2xl border border-slate-200 bg-white shadow-lg shadow-slate-200/50"
         >
@@ -332,11 +316,6 @@ export function OrderCleaningBlock() {
           </div>
         </div>
       )}
-      <CaptchaModal
-        isOpen={isCaptchaOpen}
-        onVerified={onCaptchaVerified}
-        onCancel={onCaptchaCancel}
-      />
     </>
   );
 }

@@ -121,7 +121,7 @@ export default function PricesPage() {
         <p className="mt-8 rounded-lg border border-slate-200 bg-slate-50 px-5 py-4 text-sm text-slate-600">
           Указанные цены носят ориентировочный характер. Итоговая стоимость рассчитывается после уточнения деталей: площади помещения, степени загрязнения, количества комнат и перечня дополнительных услуг.
           Узнать точную цену — по телефону{' '}
-          <a href={`tel:+${site.phoneRaw}`} className="font-medium text-primary-600 hover:underline">
+          <a href={`tel:${site.phoneRaw}`} className="font-medium text-primary-600 hover:underline">
             {site.phone}
           </a>{' '}
           или по почте{' '}
@@ -137,7 +137,7 @@ export default function PricesPage() {
             <Link href="/#zayavka">{site.cta.calculate}</Link>
           </Button>
           <Button asChild size="lg" variant="outline">
-            <a href={`tel:+${site.phoneRaw}`}>Позвонить для расчёта</a>
+            <a href={`tel:${site.phoneRaw}`}>Позвонить для расчёта</a>
           </Button>
         </div>
       </Container>

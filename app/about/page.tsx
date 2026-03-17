@@ -89,7 +89,7 @@ export default function AboutPage() {
             Контакты
           </Link>
           <a
-            href={`tel:+${site.phoneRaw}`}
+            href={`tel:${site.phoneRaw}`}
             className="inline-flex items-center justify-center rounded-xl border border-slate-300 px-6 py-3 text-sm font-medium text-slate-700 hover:bg-slate-50"
           >
             {site.phone}

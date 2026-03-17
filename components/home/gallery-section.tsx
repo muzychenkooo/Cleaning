@@ -533,7 +533,10 @@ export function GallerySection() {
         </div>
 
         {/* ── Выполненные работы (слайдер: 1 на мобиле, 2 на планшете, 3 на ПК) ── */}
-        <h2 className="font-display mt-16 text-3xl font-bold tracking-tight text-slate-900 sm:text-4xl">
+        <h2
+          id="completed-works"
+          className="font-display mt-16 text-3xl font-bold tracking-tight text-slate-900 sm:text-4xl"
+        >
           Выполненные работы
         </h2>
         <div className="mt-6 relative min-w-0 overflow-x-clip">

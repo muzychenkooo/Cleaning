@@ -25,8 +25,6 @@ import { PhoneInput } from '@/components/forms/PhoneInput';
 import { CyrillicInput } from '@/components/forms/CyrillicInput';
 import { cn } from '@/lib/utils';
 import { FORM_MESSAGES } from '@/lib/form-validation';
-import { CaptchaModal } from '@/components/anti-spam/CaptchaModal';
-import { useProtectedSubmit } from '@/hooks/useProtectedSubmit';
 
 const MAX_PLACE_OTHER_LENGTH = 80;
 const MAX_SERVICE_TYPE_OTHER_LENGTH = 80;
@@ -153,19 +151,6 @@ export function DetailedCalculator() {
     [submitStartTime],
   );
 
-  const {
-    initiateSubmit: initiateContactsSubmit,
-    isCaptchaOpen,
-    onCaptchaVerified,
-    onCaptchaCancel,
-  } = useProtectedSubmit<ContactsForm>('detailed-calculator-contacts', performContactsSubmit);
-
-  const guardedContactsSubmit = React.useCallback(
-    (data: ContactsForm) => {
-      initiateContactsSubmit(data);
-    },
-    [initiateContactsSubmit],
-  );
 
   // Reset branch state when place changes (e.g. user goes back to Q1 and picks another option)
   const setPlaceAndReset = React.useCallback((p: CalculatorPrimaryPlaceValue | null) => {
@@ -304,7 +289,7 @@ export function DetailedCalculator() {
         <div className="p-6 sm:p-8 min-h-[380px] overflow-y-auto">
           <h3 className="font-display text-xl font-semibold text-slate-900">{stepConfigContacts.title}</h3>
           <p className="mt-1 text-slate-600">{stepConfigContacts.subtitle}</p>
-          <form onSubmit={contactsForm.handleSubmit(guardedContactsSubmit)} className="mt-6 space-y-4">
+          <form onSubmit={contactsForm.handleSubmit(performContactsSubmit)} className="mt-6 space-y-4">
             <input type="text" tabIndex={-1} autoComplete="off" className="absolute opacity-0 w-0 h-0" aria-hidden {...contactsForm.register('website')} />
             <div>
               <Label htmlFor="calc-name" className="text-slate-700">Имя *</Label>
@@ -924,7 +909,7 @@ export function DetailedCalculator() {
             </div>
           )}
 
-          <form onSubmit={contactsForm.handleSubmit(guardedContactsSubmit)} className="mt-6 space-y-4">
+          <form onSubmit={contactsForm.handleSubmit(performContactsSubmit)} className="mt-6 space-y-4">
             <input type="text" tabIndex={-1} autoComplete="off" className="absolute opacity-0 w-0 h-0" aria-hidden {...contactsForm.register('website')} />
             <div>
               <Label htmlFor="calc-name" className="text-slate-700">Имя *</Label>
@@ -1025,11 +1010,6 @@ export function DetailedCalculator() {
           </div>
         </div>
       )}
-      <CaptchaModal
-        isOpen={isCaptchaOpen}
-        onVerified={onCaptchaVerified}
-        onCancel={onCaptchaCancel}
-      />
     </div>
   );
 }

@@ -215,7 +215,7 @@ export function MobileNavDrawer({ open, onClose, phoneDisplay }: Props) {
 
             <div className="mt-0.5 flex flex-wrap items-center justify-between gap-2 rounded-md px-3 py-1.5 hover:bg-slate-50">
               <a
-                href={`tel:+${site.phoneRaw}`}
+                href={`tel:${site.phoneRaw}`}
                 className="font-medium text-primary-600"
                 onClick={onClose}
               >

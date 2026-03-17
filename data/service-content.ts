@@ -111,6 +111,8 @@ export const apartmentContent: ServiceContent = {
     { label: 'Дом/коттедж', href: '/private/house/' },
     { label: 'Мойка окон', href: '/private/window-wash/' },
     { label: 'Химчистка', href: '/private/dry-cleaning/' },
+    { label: 'Озонирование', href: '/services/ozonation/' },
+    { label: 'Удаление запахов', href: '/services/odor-removal/' },
     ...commonRelatedLinks,
   ],
   anchorSections: [
@@ -170,6 +172,8 @@ export const houseContent: ServiceContent = {
     { label: 'Квартира', href: '/private/apartment/' },
     { label: 'Мойка окон', href: '/private/window-wash/' },
     { label: 'Химчистка', href: '/private/dry-cleaning/' },
+    { label: 'Озонирование', href: '/services/ozonation/' },
+    { label: 'Удаление запахов', href: '/services/odor-removal/' },
     ...commonRelatedLinks,
   ],
   anchorSections: [
@@ -225,6 +229,8 @@ export const windowWashContent: ServiceContent = {
   relatedLinks: [
     { label: 'Квартира', href: '/private/apartment/' },
     { label: 'Дом/коттедж', href: '/private/house/' },
+    { label: 'Химчистка', href: '/private/dry-cleaning/' },
+    { label: 'Озонирование', href: '/services/ozonation/' },
     { label: 'Окна/альпинизм (бизнес)', href: '/business/windows-climbing/' },
     ...commonRelatedLinks,
   ],
@@ -268,8 +274,10 @@ export const dryCleaningContent: ServiceContent = {
   ],
   relatedLinks: [
     { label: 'Квартира', href: '/private/apartment/' },
+    { label: 'Дом/коттедж', href: '/private/house/' },
     { label: 'Удаление запахов', href: '/services/odor-removal/' },
     { label: 'Озонирование', href: '/services/ozonation/' },
+    { label: 'Дезинфекция', href: '/services/disinfection/' },
     ...commonRelatedLinks,
   ],
   anchorSections: [
@@ -307,6 +315,8 @@ export const ozonationContent: ServiceContent = {
     { label: 'Удаление запахов', href: '/services/odor-removal/' },
     { label: 'Дезинфекция', href: '/services/disinfection/' },
     { label: 'Квартира', href: '/private/apartment/' },
+    { label: 'Дом/коттедж', href: '/private/house/' },
+    { label: 'Химчистка', href: '/private/dry-cleaning/' },
     ...commonRelatedLinks,
   ],
 };
@@ -338,6 +348,8 @@ export const odorRemovalContent: ServiceContent = {
     { label: 'Озонирование', href: '/services/ozonation/' },
     { label: 'Дезинфекция', href: '/services/disinfection/' },
     { label: 'Химчистка', href: '/private/dry-cleaning/' },
+    { label: 'Квартира', href: '/private/apartment/' },
+    { label: 'Дом/коттедж', href: '/private/house/' },
     ...commonRelatedLinks,
   ],
 };
@@ -368,6 +380,8 @@ export const disinfectionContent: ServiceContent = {
     { label: 'Озонирование', href: '/services/ozonation/' },
     { label: 'Удаление запахов', href: '/services/odor-removal/' },
     { label: 'Квартира', href: '/private/apartment/' },
+    { label: 'Дом/коттедж', href: '/private/house/' },
+    { label: 'Химчистка', href: '/private/dry-cleaning/' },
     ...commonRelatedLinks,
   ],
 };

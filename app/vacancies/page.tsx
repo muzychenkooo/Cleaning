@@ -111,7 +111,7 @@ export default function VacanciesPage() {
           <div className="mt-8 flex flex-wrap items-center gap-3">
             <SocialIconLinks size="lg" />
             <a
-              href={`tel:+${site.phoneRaw}`}
+              href={`tel:${site.phoneRaw}`}
               className="inline-flex items-center gap-2 rounded-lg border border-slate-200 bg-white px-5 py-2.5 text-sm font-semibold text-slate-700 shadow-sm hover:bg-slate-50 hover:text-primary-600 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary-500 focus-visible:ring-offset-2"
             >
               📞 {site.phone}
@@ -159,7 +159,7 @@ export default function VacanciesPage() {
           </p>
           <div className="mt-4 flex flex-wrap gap-4">
             <a
-              href={`tel:+${site.phoneRaw}`}
+              href={`tel:${site.phoneRaw}`}
               className="inline-flex items-center gap-2 rounded-lg border border-slate-200 bg-white px-4 py-2.5 text-sm font-medium text-slate-700 shadow-sm hover:bg-slate-50 hover:text-primary-600"
             >
               📞 {site.phone}

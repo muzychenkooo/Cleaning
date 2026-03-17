@@ -22,13 +22,13 @@ export function ServiceHero({ breadcrumbs, title, intro }: Props) {
         <p className="mt-4 text-lg text-slate-600 max-w-2xl">{intro}</p>
         <div className="mt-6 flex flex-wrap gap-3">
           <Button asChild>
-            <Link href="/quiz/">{site.cta.calculate}</Link>
+            <Link href="/#zayavka">{site.cta.calculate}</Link>
           </Button>
           <Button asChild variant="outline">
             <Link href="/#contact-questions">{site.cta.order}</Link>
           </Button>
           <Button asChild variant="outline">
-            <a href={`tel:+${site.phoneRaw}`}>Позвонить</a>
+            <a href={`tel:${site.phoneRaw}`}>Позвонить</a>
           </Button>
           <SocialIconLinks size="md" className="inline-flex" />
         </div>

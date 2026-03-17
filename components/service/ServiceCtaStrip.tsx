@@ -13,10 +13,10 @@ export function ServiceCtaStrip() {
           </p>
           <div className="flex flex-wrap justify-center gap-3">
             <Button asChild>
-              <Link href="/quiz/">{site.cta.calculate}</Link>
+              <Link href="/#zayavka">{site.cta.calculate}</Link>
             </Button>
             <Button asChild variant="outline">
-              <a href={`tel:+${site.phoneRaw}`}>Позвонить</a>
+              <a href={`tel:${site.phoneRaw}`}>Позвонить</a>
             </Button>
           </div>
         </div>

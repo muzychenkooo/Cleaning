@@ -34,7 +34,7 @@ export function Topbar() {
 
           {/* Телефон */}
           <a
-            href={`tel:+${site.phoneRaw}`}
+            href={`tel:${site.phoneRaw}`}
             className="shrink-0 font-medium text-blue-900 hover:text-primary-600 whitespace-nowrap"
           >
             {site.phoneDisplay}
